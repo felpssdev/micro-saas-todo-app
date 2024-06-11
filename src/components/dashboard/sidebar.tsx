@@ -88,8 +88,8 @@ export function DashboardSidebarNavLink({
     <Link
       href={href}
       className={cn(
-        'text-xs px-3 py-2 rounded-md flex items-center',
-        active && 'bg-secondary',
+        'text-xs px-3 py-2 rounded-md flex items-center text-muted-foreground',
+        active && 'bg-secondary text-primary',
         className,
       )}
     >

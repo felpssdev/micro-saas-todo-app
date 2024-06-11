@@ -34,7 +34,6 @@ export function UserDropdown({ user }: UserdropdownProps) {
             <AvatarImage src={user.image as string} alt={user.name as string} />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
-          <div>{user.name && <span>{user.name}</span>}</div>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="start" forceMount>

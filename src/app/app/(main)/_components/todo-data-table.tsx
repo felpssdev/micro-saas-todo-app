@@ -131,7 +131,14 @@ export function TodoDataTable({ data }: TodoDataTable) {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(todo.id)}
+                onClick={() => {
+                  navigator.clipboard.writeText(todo.id)
+
+                  toast({
+                    title: 'Success',
+                    description: 'The id is already on your copyboard.',
+                  })
+                }}
               >
                 Copy todo ID
               </DropdownMenuItem>
