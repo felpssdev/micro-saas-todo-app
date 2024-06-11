@@ -1,17 +1,17 @@
-import React from 'react'
-import { auth } from '@/services/auth'
-import UserInfo from './_components/user-info'
+import {
+  DashboardPage,
+  DashboardPageHeader,
+  DashboardPageHeaderTitle,
+  DashboardPageMain,
+} from '@/components/dashboard/dashboard-page'
 
-const Page = async () => {
-  const session = await auth()
-
+export default function Page() {
   return (
-    <main className="flex w-full h-screen">
-      <div className="w-full h-full flex items-center justify-center">
-        <UserInfo user={session?.user} />
-      </div>
-    </main>
+    <DashboardPage>
+      <DashboardPageHeader>
+        <DashboardPageHeaderTitle>Tasks</DashboardPageHeaderTitle>
+      </DashboardPageHeader>
+      <DashboardPageMain>Tasks</DashboardPageMain>
+    </DashboardPage>
   )
 }
-
-export default Page

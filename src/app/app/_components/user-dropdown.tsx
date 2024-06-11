@@ -13,34 +13,35 @@ import {
 import { LuSettings2 } from 'react-icons/lu'
 import { BiRocket } from 'react-icons/bi'
 import { GoSignOut } from 'react-icons/go'
+import { Session } from 'next-auth'
+import { signOut } from 'next-auth/react'
 
-export function UserDropdown() {
+type UserdropdownProps = {
+  user: Session['user']
+}
+
+export function UserDropdown({ user }: UserdropdownProps) {
+  if (!user) return
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           variant="secondary"
-          className="relative h-8 p-2 w-full flex justify-between items-center space-x-2"
+          className="relative size-8 p-2 rounded-full"
         >
           <Avatar className="h-8 w-8">
-            <AvatarImage src="/avatars/01.png" alt="@shadcn" />
-            <AvatarFallback>SC</AvatarFallback>
+            <AvatarImage src={user.image as string} alt={user.name as string} />
+            <AvatarFallback>U</AvatarFallback>
           </Avatar>
-
-          <div className="flex flex-col space-y-1 flex-1 text-left">
-            <p className="text-sm font-medium leading-none">shadcn</p>
-            <p className="text-xs leading-none text-muted-foreground">
-              m@example.com
-            </p>
-          </div>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="center" forceMount>
+      <DropdownMenuContent className="w-56" align="start" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">shadcn</p>
+            <p className="text-sm font-medium leading-none">{user.name}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              m@example.com
+              {user.email}
             </p>
           </div>
         </DropdownMenuLabel>
@@ -56,7 +57,7 @@ export function UserDropdown() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => signOut()}>
           <GoSignOut className="size-3 mr-3" />
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

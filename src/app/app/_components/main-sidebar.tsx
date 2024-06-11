@@ -1,15 +1,15 @@
 'use client'
 
 import {
-  Sidebar,
-  SidebarHeader,
-  SidebarMain,
-  SidebarNav,
-  SidebarNavMain,
-  SidebarNavLink,
-  SidebarNavHeader,
-  SidebarNavHeaderTitle,
-  SidebarFooter,
+  DashboardSidebar,
+  DashboardSidebarHeader,
+  DashboardSidebarMain,
+  DashboardSidebarNav,
+  DashboardSidebarNavMain,
+  DashboardSidebarNavLink,
+  DashboardSidebarNavHeader,
+  DashboardSidebarNavHeaderTitle,
+  DashboardSidebarFooter,
 } from '@/components/dashboard/sidebar'
 import { usePathname } from 'next/navigation'
 import React from 'react'
@@ -17,8 +17,13 @@ import { LuSettings2 } from 'react-icons/lu'
 import { GoHome } from 'react-icons/go'
 import { UserDropdown } from './user-dropdown'
 import Logo from '@/components/logo'
+import { Session } from 'next-auth'
 
-export function MainSideBar() {
+type MainSidebarProps = {
+  user: Session['user']
+}
+
+export function MainSidebar({ user }: MainSidebarProps) {
   const pathname = usePathname()
 
   const isActive = (path: string) => {
@@ -26,42 +31,48 @@ export function MainSideBar() {
   }
 
   return (
-    <Sidebar>
-      <SidebarHeader>
+    <DashboardSidebar>
+      <DashboardSidebarHeader>
         <Logo />
-      </SidebarHeader>
+      </DashboardSidebarHeader>
 
-      <SidebarMain className="flex flex-col flex-grow">
-        <SidebarNav>
-          <SidebarNavMain>
-            <SidebarNavLink active={isActive('/app')} href="/app">
+      <DashboardSidebarMain className="flex flex-col flex-grow">
+        <DashboardSidebarNav>
+          <DashboardSidebarNavMain>
+            <DashboardSidebarNavLink active={isActive('/app')} href="/app">
               <GoHome className="size-3 mr-3" />
               Tasks
-            </SidebarNavLink>
-            <SidebarNavLink
+            </DashboardSidebarNavLink>
+            <DashboardSidebarNavLink
               active={isActive('/app/settings')}
               href="/app/settings"
             >
               <LuSettings2 className="size-3 mr-3" />
               Settings
-            </SidebarNavLink>
-          </SidebarNavMain>
-        </SidebarNav>
+            </DashboardSidebarNavLink>
+          </DashboardSidebarNavMain>
+        </DashboardSidebarNav>
 
-        <SidebarNav className="mt-auto">
-          <SidebarNavHeader>
-            <SidebarNavHeaderTitle>Help center</SidebarNavHeaderTitle>
-          </SidebarNavHeader>
-          <SidebarNavMain>
-            <SidebarNavLink href="/">Need help?</SidebarNavLink>
-            <SidebarNavLink href="/">Follow us</SidebarNavLink>
-          </SidebarNavMain>
-        </SidebarNav>
-      </SidebarMain>
+        <DashboardSidebarNav className="mt-auto">
+          <DashboardSidebarNavHeader>
+            <DashboardSidebarNavHeaderTitle>
+              Help center
+            </DashboardSidebarNavHeaderTitle>
+          </DashboardSidebarNavHeader>
+          <DashboardSidebarNavMain>
+            <DashboardSidebarNavLink href="/">
+              Need help?
+            </DashboardSidebarNavLink>
+            <DashboardSidebarNavLink href="/">
+              Follow us
+            </DashboardSidebarNavLink>
+          </DashboardSidebarNavMain>
+        </DashboardSidebarNav>
+      </DashboardSidebarMain>
 
-      <SidebarFooter>
-        <UserDropdown />
-      </SidebarFooter>
-    </Sidebar>
+      <DashboardSidebarFooter>
+        <UserDropdown user={user} />
+      </DashboardSidebarFooter>
+    </DashboardSidebar>
   )
 }
