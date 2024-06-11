@@ -14,6 +14,7 @@ import {
   FormDescription,
   FormMessage,
   Form,
+  FormLabel,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -66,6 +67,7 @@ export function ProfileForm({ defaultValue }: ProfileFormProps) {
               name="name"
               render={({ field }) => (
                 <FormItem>
+                  <FormLabel>Name</FormLabel>
                   <FormControl>
                     <Input placeholder="Enter your name" {...field} />
                   </FormControl>
@@ -77,7 +79,7 @@ export function ProfileForm({ defaultValue }: ProfileFormProps) {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>E-mail</CardTitle>
+            <CardTitle>Email</CardTitle>
           </CardHeader>
           <CardContent>
             <FormField
@@ -85,12 +87,9 @@ export function ProfileForm({ defaultValue }: ProfileFormProps) {
               name="email"
               render={({ field }) => (
                 <FormItem>
+                  <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input
-                      readOnly
-                      placeholder="Enter your e-mail"
-                      {...field}
-                    />
+                    <Input readOnly placeholder="Enter your email" {...field} />
                   </FormControl>
 
                   <FormMessage />
@@ -100,7 +99,7 @@ export function ProfileForm({ defaultValue }: ProfileFormProps) {
           </CardContent>
           <CardFooter>
             <FormDescription>
-              Please, contact flsdesenvolvimento@gmail.com to change the e-mail.
+              Please, contact flsdesenvolvimento@gmail.com to change the email.
             </FormDescription>{' '}
           </CardFooter>
         </Card>

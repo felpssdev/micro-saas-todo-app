@@ -1,7 +1,8 @@
 import React from 'react'
+import { ThemeForm } from './_components/form'
 
 const Theme = () => {
-  return <h1>Theme</h1>
+  return <ThemeForm />
 }
 
 export default Theme
