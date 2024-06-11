@@ -40,14 +40,14 @@ export function MainSidebar({ user }: MainSidebarProps) {
         <DashboardSidebarNav>
           <DashboardSidebarNavMain>
             <DashboardSidebarNavLink active={isActive('/app')} href="/app">
-              <GoHome className="size-3 mr-3" />
+              <GoHome className="size-4 mr-3" />
               Tasks
             </DashboardSidebarNavLink>
             <DashboardSidebarNavLink
               active={isActive('/app/settings')}
               href="/app/settings"
             >
-              <LuSettings2 className="size-3 mr-3" />
+              <LuSettings2 className="size-4 mr-3" />
               Settings
             </DashboardSidebarNavLink>
           </DashboardSidebarNavMain>

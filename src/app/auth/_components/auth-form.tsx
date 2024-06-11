@@ -1,12 +1,12 @@
 'use client'
 
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import { signIn } from 'next-auth/react'
 
-import { useForm } from "react-hook-form"
-import { toast } from "@/components/ui/use-toast"
+import { useForm } from 'react-hook-form'
+import { toast } from '@/components/ui/use-toast'
 
 export function AuthForm() {
   const form = useForm()
@@ -14,15 +14,15 @@ export function AuthForm() {
   const handleSubmit = form.handleSubmit(async (data) => {
     try {
       console.log(data)
-      await signIn('email', { email: data.email, redirect: false })
+      await signIn('nodemailer', { email: data.email, redirect: false })
       toast({
         title: 'Magic link sent',
-        description: 'Check your e-mail for the magic link to login'
+        description: 'Check your e-mail for the magic link to login',
       })
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'An error has occurred. Please try again.'
+        description: 'An error has occurred. Please try again.',
       })
     }
   })
@@ -34,16 +34,28 @@ export function AuthForm() {
           <div className="space-y-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-gray-500 dark:text-gray-400">
-              {"Enter your e-mail below and we'll send you a magic link to log in."}
+              {
+                "Enter your e-mail below and we'll send you a magic link to log in."
+              }
             </p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="email">E-mail</Label>
-              <Input {...form.register('email')} id="email" type="email" placeholder="m@example.com" required />
+              <Input
+                {...form.register('email')}
+                id="email"
+                type="email"
+                placeholder="m@example.com"
+                required
+              />
             </div>
-            <Button type="submit" className="w-full">
-              Send
+            <Button
+              disabled={form.formState.isSubmitting}
+              type="submit"
+              className="w-full"
+            >
+              {form.formState.isSubmitting ? 'Sending...' : 'Send Magic Link'}
             </Button>
           </form>
         </div>
