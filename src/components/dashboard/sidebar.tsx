@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import React from 'react'
 
-export type SidebarGenericProps<T = any> = {
+export type SidebarGenericProps<T = unknown> = {
   children: React.ReactNode
   className?: string
 } & T
@@ -21,7 +21,11 @@ export function Sidebar({ className, children }: SidebarGenericProps) {
 }
 
 export function SidebarHeader({ className, children }: SidebarGenericProps) {
-  return <header className={cn('p-6', className)}>{children}</header>
+  return (
+    <header className={cn('p-6 border-b border-border', className)}>
+      {children}
+    </header>
+  )
 }
 
 export function SidebarHeaderTitle({
@@ -40,7 +44,7 @@ export function SidebarFooter({ className, children }: SidebarGenericProps) {
 }
 
 export function SidebarMain({ className, children }: SidebarGenericProps) {
-  return <main className={cn('pt-6 px-3', className)}>{children}</main>
+  return <main className={cn('px-3', className)}>{children}</main>
 }
 
 export function SidebarNav({ className, children }: SidebarGenericProps) {

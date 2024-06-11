@@ -15,6 +15,8 @@ import { usePathname } from 'next/navigation'
 import React from 'react'
 import { LuSettings2 } from 'react-icons/lu'
 import { GoHome } from 'react-icons/go'
+import { UserDropdown } from './user-dropdown'
+import Logo from '@/components/logo'
 
 export function MainSideBar() {
   const pathname = usePathname()
@@ -26,7 +28,7 @@ export function MainSideBar() {
   return (
     <Sidebar>
       <SidebarHeader>
-        <h1>Title</h1>
+        <Logo />
       </SidebarHeader>
 
       <SidebarMain className="flex flex-col flex-grow">
@@ -34,30 +36,32 @@ export function MainSideBar() {
           <SidebarNavMain>
             <SidebarNavLink active={isActive('/app')} href="/app">
               <GoHome className="size-3 mr-3" />
-              Tarefas
+              Tasks
             </SidebarNavLink>
             <SidebarNavLink
               active={isActive('/app/settings')}
               href="/app/settings"
             >
               <LuSettings2 className="size-3 mr-3" />
-              Configurações
+              Settings
             </SidebarNavLink>
           </SidebarNavMain>
         </SidebarNav>
 
         <SidebarNav className="mt-auto">
           <SidebarNavHeader>
-            <SidebarNavHeaderTitle>Central de Ajuda</SidebarNavHeaderTitle>
+            <SidebarNavHeaderTitle>Help center</SidebarNavHeaderTitle>
           </SidebarNavHeader>
           <SidebarNavMain>
-            <SidebarNavLink href="/">Precisa de ajuda?</SidebarNavLink>
-            <SidebarNavLink href="/">Site</SidebarNavLink>
+            <SidebarNavLink href="/">Need help?</SidebarNavLink>
+            <SidebarNavLink href="/">Follow us</SidebarNavLink>
           </SidebarNavMain>
         </SidebarNav>
       </SidebarMain>
 
-      <SidebarFooter>User</SidebarFooter>
+      <SidebarFooter>
+        <UserDropdown />
+      </SidebarFooter>
     </Sidebar>
   )
 }
