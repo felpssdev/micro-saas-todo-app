@@ -9,8 +9,11 @@ import { TodoDataTable } from './_components/todo-data-table'
 import { TodoUpsertSheet } from './_components/todo-upsert-sheet'
 import { Button } from '@/components/ui/button'
 import { PlusIcon } from '@radix-ui/react-icons'
+import { getUserTodos } from './actions'
 
 export default async function Page() {
+  const todos = await getUserTodos()
+
   return (
     <DashboardPage>
       <DashboardPageHeader>
@@ -25,7 +28,7 @@ export default async function Page() {
         </DashboardPageHeaderNav>
       </DashboardPageHeader>
       <DashboardPageMain>
-        <TodoDataTable />
+        <TodoDataTable data={todos} />
       </DashboardPageMain>
     </DashboardPage>
   )
