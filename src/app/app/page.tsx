@@ -6,8 +6,8 @@ const Page = async () => {
   const session = await auth()
 
   return (
-    <main className='flex w-full h-screen'>
-      <div className='w-full h-full flex items-center justify-center'>
+    <main className="flex w-full h-screen">
+      <div className="w-full h-full flex items-center justify-center">
         <UserInfo user={session?.user} />
       </div>
     </main>
